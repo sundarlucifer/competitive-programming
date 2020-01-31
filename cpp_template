@@ -1,8 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+#define si short int
 #define ll long long
 #define forn for(int i=0;i<n;i++)
+#define vs vector<string>
+#define pb push_back
 
 
 void solve(){
