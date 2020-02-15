@@ -1,12 +1,15 @@
-// incomplete
 #include <iostream>
 using namespace std;
 
 class Stack{
     static const int STACK_SIZE = 10;
     int _stack[STACK_SIZE];
-    int top = -1;
+    int top;
 public:
+    
+    Stack(){
+        top = -1;
+    }
 
     bool isEmpty(){
         return top < 0 ? true : false;
@@ -24,17 +27,17 @@ public:
     int pop(){
         if(isEmpty()){
             cout << "Stack underflow" << endl;
-        }else{
-            int value = peek();
-            top--;
-            return value;
+            return -1;
         }
+        int value = peek();
+        top--;
+        return value;
     }
     
     int peek(){
         int value = -1;
         if(isEmpty()){
-            cout << "Top on empty stack, returning -1" << endl;
+            cout << "Peek on empty stack, returning -1" << endl;
         }else{
             value = _stack[top];
         }
@@ -46,21 +49,29 @@ public:
     }
     
     void sort(){
+        // 0 or 1 element -> already sorted
         if(size() <= 1)
             return;
         
         Stack tempStack = Stack();
-        int tempTop = top;
+        int tempTop;
         int value;
+        
+        tempStack.push( pop() );
+        
         while(!isEmpty()){
+            tempTop = top;
             value = pop();
-            while(tempStack.peek()<value && !tempStack.isEmpty()){
+            while(tempStack.peek()>value && !tempStack.isEmpty()){
                 push( tempStack.pop() );
             }
             tempStack.push(value);
             while(top >= tempTop){
                 tempStack.push( pop() );
             }
+        }
+        while(!tempStack.isEmpty()){
+            push(tempStack.pop());
         }
     }
 };
