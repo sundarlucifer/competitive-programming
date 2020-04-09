@@ -1,3 +1,6 @@
+minLvl = 0
+minSum = 999999999
+
 class Node:
     def __init__(self, data):
         self.val = data
@@ -52,6 +55,4 @@ def main():
     print('MinSum :', minSum)
     print('Level  :', minLvl)
 
-minLvl = 0
-minSum = 999999999
 main()
